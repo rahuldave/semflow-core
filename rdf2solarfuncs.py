@@ -415,6 +415,7 @@ def getInfoForObsuri(c, solr, theuri, mission, project, othersbool=None, entrybo
         #do an augment
         #print "+++++", thedict
         #print '=====', daprops
+        thedict['numpubs']=len(papersray)
         doAugment(daprops, thedict, papersray)
         #retufn the dict
         #return thedict
@@ -710,6 +711,7 @@ def getInfoForBibcode(c, solr, bibcode, mission, project, othersbool=None, entry
             thedict=getInfoForObsuri(c, solr, theuri, mission, project, othersbool)
 	    #print "THEDICT",thedict
             obsray.append(thedict)
+        result['numobsvs']=len(obsray)
 	if othersbool.has_key('prop') and othersbool['prop']==True:
 	    daprops.extend(DAPROPSPROP)
         doAugment(daprops, result, obsray)
