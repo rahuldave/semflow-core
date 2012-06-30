@@ -472,7 +472,7 @@ PRIMPROPSOBSVONLY=['data_url_s', 'data_format_s', 'calib_level_i', 'data_collect
      Some fields are multiValued only because Tika currently may return
      multiple values for them.
    -->
-   <field name="numpubs" type="tint" indexed="true" stored="true" multiValued="false"/>
+   <field name="numpubs_i" type="tint" indexed="true" stored="true" multiValued="false"/>
    <!--EVERYTHING ABOUT PAPERS NOW BECOMES MULTIVALUED BECAUSE MULTIPLE PAPERS COULD HAVE COME FROM
    ONE OBSERVATION-->
    <field name="id" type="string" indexed="true" stored="true"  multiValued="true"/> 
