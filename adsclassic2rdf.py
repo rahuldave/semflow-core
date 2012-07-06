@@ -279,6 +279,7 @@ def do_authors(g, record, theuuid):
         authnamenode=author.findall('name')[0]
         auth_fname=authnamenode.findall('western')[0].text
         auth_name=authnamenode.findall('normalized')[0].text
+	#print auth_fname, auth_name
         qplabel='_'.join(quote_plus(auth_name).split('+'))
         auth_uri = uri_agents["PersonName/"+qplabel+"/"+str(uuid.uuid4())]
         gadd(g, auth_uri, a, agent.PersonName)
@@ -392,7 +393,10 @@ def record_as_rdf(datapath, bibcodefile, format='xml', baseUrl=None):
         # data for Chandra uses %26 rather than &amp; for the bibcode).
         if bibcode.find('%') != -1:
             raise ValueError("bibcode={0} contains a % character".format(bibcode))
-        
+        #Rahul added this to make sure only those bibcodes in the biblist files that go into the dbhash
+	#are processed 
+	if not dbhash.has_key(bibcode):
+		continue
         incuuid=dbhash[bibcode]
         node.bibcode=bibcode
         graph = record_as_graph_from_xml(bibcode, incuuid, node, baseUrl)
